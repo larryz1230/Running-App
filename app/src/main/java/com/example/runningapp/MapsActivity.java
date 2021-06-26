@@ -131,24 +131,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-        onemirad.add(new POIS("Ardenwood Farms", 37.554900, -122.051040));
-
-//        swiper_no_swiping.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                getCoordinates();
-//                startActivity(new Intent(getApplicationContext(), MapsActivity.class));
-//            }
-//        });
-//        soupKitchen.addLocations(new Institution(soupKitchen, new LatLng(37.775592, -122.433313 ), "We provide food for the San Francisco, California area and provide a wide variety of extravagant cuisine" , "Momma's Food" , "Soup Kitchen"));
-//        soupKitchen.addLocations(new Institution(soupKitchen, new LatLng(40.644315, -73.957997) , "We provide food for the New York City, New York area and provide a wide variety of extravagant cuisine" , "Taste From Home" , "Soup Kitchen"));
-//        housing.addLocations(new Institution(housing, new LatLng(47.580100, -122.329141) , "We provide affordable housing units for the Seattle, Washington area" , "Affordable Housing First" , "Affordable Housing"));
-//        housing.addLocations(new Institution(housing, new LatLng(30.259667, -97.746062), "We provide affordable housing units for the Austin, Texas area" , "Texas Housing" , "Affordable Housing"));
-//        donation.addLocations(new Institution(donation, new LatLng(25.773600, -80.214817) , "We provide previously owned items ranging from toys to clothes for the financially unstable people in the Miami, Florida area" , "GoodWish" , "Donation"));
-//        donation.addLocations(new Institution(donation, new LatLng(33.446787, -112.077546) , "We provide previously owned items ranging from toys to clothes for the financially unstable people in the Phoenix, Arizona area" , "CitizenLove" , "Donation"));
-
-
-        //method to get coordinates
+        onemirad.add(new POIS("Newark Community Center Park", 37.54954479327098, -122.04083206730614));
+        onemirad.add(new POIS("John F Kennedy Elementary School", 37.552601866282345, -122.04221115390615));
+        onemirad.add(new POIS("Fremont Fire Station", 37.566681495084794, -122.05337611925441));
+        onemirad.add(new POIS("Lakeshore Park", 37.553702292645035, -122.03290447295569));
 
 
 
@@ -379,18 +365,75 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         CameraUpdate point = CameraUpdateFactory.newLatLng(latLng);
                 mMap.moveCamera(point);
 
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12.0f));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13.0f));
 
-        mMap.addMarker(new MarkerOptions().position(latLng).title("Starting Location"));
+        mMap.addMarker(new MarkerOptions().position(latLng).title("Starting Location").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
 
         init();
 
+        for (POIS poi : onemirad){
+            mMap.addMarker(new MarkerOptions().position(poi.getLatLng()).title(poi.getLocationname() + " 5 points"));
+        }
 //        mMap.addMarker(new MarkerOptions().position(onemirad.get(0).getLatLng()).title(onemirad.get(0).getLocationname() + " 5 points"));
+//        mMap.addMarker(new MarkerOptions().position(onemirad.get(1).getLatLng()).title(onemirad.get(1).getLocationname() + " 5 points"));
 //        mMap.addMarker(new MarkerOptions().position(threemirad.get(0).getLatLng()).title(threemirad.get(0).getLocationname() + "20 points"));
 //        mMap.addMarker(new MarkerOptions().position(fivemirad.get(0).getLatLng()).title(fivemirad.get(0).getLocationname() + " 40 points"));
 //
 
 
+
+
+
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            private boolean doit = false;
+
+            @Override
+            public boolean onMarkerClick(final  Marker marker) {
+                Toast.makeText(MapsActivity.this, "Selected a marker", Toast.LENGTH_SHORT).show();
+                clickPos = marker.getPosition();
+                clicked = true;
+                if(autoclick){
+                    marker.remove();
+                    autoclick = false;
+                }
+//                for(Institution i : institutions.getLocations()){
+//                    if(i.getPos().equals(MapsActivity.getClickPos())){
+//                        inst = i;
+//                    }
+//                }
+
+//                details = findViewById(R.id.details);
+//                details.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        //marker.getPostition()
+//                        // if(description1 == null || type1 == null){
+//                        //  Toast.makeText(MapsActivity.this, "Details not available", Toast.LENGTH_SHORT).show();
+//                        //   } else {
+//                        startActivity(new Intent(MapsActivity.this, DetailsActivity.class));
+//                        finish();
+//                        return;
+//                        //}
+//                    }
+//
+//                });
+
+
+//                removelocation.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        marker.remove();
+//                        for (Institution i : institutions.getLocations()) {
+//                            if(marker.getPosition().equals(i.getPos())){
+//                                Toast.makeText(MapsActivity.this, "Removed a location", Toast.LENGTH_SHORT).show();
+//                                institutions.getLocations().remove(i);
+//                            }
+//                        }
+//                    }
+//                });
+                return clicked;
+            }
+        });
 
 
 //        // moves camera to coordinates
