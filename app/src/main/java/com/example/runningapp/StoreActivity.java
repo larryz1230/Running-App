@@ -28,8 +28,8 @@ public class StoreActivity extends AppCompatActivity {
         storeTitle = findViewById(R.id.storeTitle);
         creditText = findViewById(R.id.credits);
 
-        bItem1 = findViewById(R.id.bItem1);
-        sItem1 = findViewById(R.id.sItem1);
+//        bItem1 = findViewById(R.id.bItem1);
+//        sItem1 = findViewById(R.id.sItem1);
 
         creditText.setText("Credits: " + credits);
         bItem1.setOnClickListener(new View.OnClickListener() {
