@@ -32,6 +32,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.places.Places;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -57,7 +58,7 @@ import java.util.Map;
 
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.OnConnectionFailedListener {
-    private Button toleader, tostore, toprofile;
+    private Button tomenu;
     private GoogleMap mMap;
     private Marker selected;
     private boolean clicked = false;
@@ -76,11 +77,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
     private static final float DEFAULT_ZOOM = 15f;
     private static final LatLngBounds LAT_LNG_BOUNDS = new LatLngBounds(
-            new LatLng(-40, -168), new LatLng(71, 136));
+            new LatLng(-40, -58), new LatLng(71, 80));
 
     // Current Location Stuff
     SupportMapFragment supportMapFragment;
     FusedLocationProviderClient client;
+    LatLng latLngg;
 
 
     //widgets
@@ -99,6 +101,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     DrawerLayout d1;
 
 
+    public ArrayList<POIS> onemirad = new ArrayList<>();
+    public ArrayList<POIS> threemirad = new ArrayList<>();
+    public ArrayList<POIS> fivemirad = new ArrayList<>();
+
+
 
     private boolean hasStarted = false;
     Button refresh;
@@ -114,6 +121,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_maps);
 //        swiper_no_swiping = findViewById(R.id.swipethismuthafucka);
 
+        tomenu = findViewById(R.id.menu);
+
+        tomenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), MenuActivity.class));
+            }
+        });
+
+        onemirad.add(new POIS("Ardenwood Farms", 37.554900, -122.051040));
 
 //        swiper_no_swiping.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 //            @Override
@@ -132,30 +149,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         //method to get coordinates
 
-        toleader = findViewById(R.id.toleader);
-        toprofile = findViewById(R.id.toprofile);
-        tostore = findViewById(R.id.tostore);
 
-        toleader.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), LeaderboardActivity.class));
-            }
-        });
-
-        tostore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), StoreActivity.class));
-            }
-        });
-
-        toprofile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-            }
-        });
 
 
 //        BitmapDrawable bitmap = (BitmapDrawable) getResources().getDrawable(R.drawable.institution_icon);
@@ -172,6 +166,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (ActivityCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             //When permission granted
             getCurrentLocation();
+            client.getLastLocation()
+                    .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                        @Override
+                        public void onSuccess(Location location) {
+                            latLngg = new LatLng(location.getLatitude(), location.getLongitude());
+                        }
+                    });
         } else {
             //When permission denied
             //Request permission
@@ -187,6 +188,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mSearchText = findViewById(R.id.input_search);
         d1 = findViewById(R.id.d1);
+
 
 
 
@@ -258,14 +260,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         @Override
                         public void onMapReady(GoogleMap googleMap) {
                             //Inintialize lat lng
-                            LatLng latLng = new LatLng(location.getLatitude()
+                            latLngg = new LatLng(location.getLatitude()
                                     ,location.getLongitude());
+
+                            System.out.println("latlng " + latLngg.latitude + " " + latLngg.longitude);
                             //Create marker options
-                            MarkerOptions options = new MarkerOptions().position(latLng)
+                            MarkerOptions options = new MarkerOptions().position(latLngg)
                                     .title("Current Location")
                                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
                             //Zoom map
-                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,7));
+                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLngg,7));
                             //Add marker on map
                             googleMap.addMarker(options);
                         }
@@ -348,7 +352,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         MarkerOptions options = new MarkerOptions().position(latLng).title(title);
         autoclick = true;
-        mMap.addMarker(options).showInfoWindow();
+//        mMap.addMarker(options).showInfoWindow();
     }
 
 
@@ -367,7 +371,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mMap = googleMap;
 
+//        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(LAT_LNG_BOUNDS, 0));
+
+        CameraUpdate point = CameraUpdateFactory.newLatLng(new LatLng(37.554900, -122.051040));
+                mMap.moveCamera(point);
+
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(37.554900, -122.051040 ), 12.0f));
+
+        mMap.addMarker(new MarkerOptions().position(onemirad.get(0).getLatLng()).title("Starting Location"));
+
         init();
+
+//        mMap.addMarker(new MarkerOptions().position(onemirad.get(0).getLatLng()).title(onemirad.get(0).getLocationname() + " 5 points"));
+//        mMap.addMarker(new MarkerOptions().position(threemirad.get(0).getLatLng()).title(threemirad.get(0).getLocationname() + "20 points"));
+//        mMap.addMarker(new MarkerOptions().position(fivemirad.get(0).getLatLng()).title(fivemirad.get(0).getLocationname() + " 40 points"));
+//
+
+
+
+
+//        // moves camera to coordinates
+
+//// animates camera to coordinates
+//        mMap.animateCamera(point);
+
+//        System.out.println(getClickPos().latitude);
+
+
 //        for(LatLng l : locCor){
 //            LatLng institutePos = l;
 //            mMap.addMarker(new MarkerOptions().position(institutePos).title("Institution").icon(BitmapDescriptorFactory.fromBitmap(institution_icon)));
@@ -397,24 +427,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //            }
 //        }
 
-        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-            @Override
-            public void onMapClick(LatLng latLng) {
-
-                if(selected != null){
-                    selected.remove();
-                }
-
-                clickPos = latLng;
-                selectedAnything = true;
-
-
-                selected = mMap.addMarker(new MarkerOptions().position(latLng).title(""));
-                clicked = true;
-
-            }
-
-        });
+//        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+//            @Override
+//            public void onMapClick(LatLng latLng) {
+//
+//                if(selected != null){
+//                    selected.remove();
+//                }
+//
+//                clickPos = latLng;
+//                selectedAnything = true;
+//
+//
+//                selected = mMap.addMarker(new MarkerOptions().position(latLng).title(""));
+//                clicked = true;
+//
+//            }
+//
+//        });
 
 //        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
 //            private boolean doit = false;
@@ -478,3 +508,4 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 }
+

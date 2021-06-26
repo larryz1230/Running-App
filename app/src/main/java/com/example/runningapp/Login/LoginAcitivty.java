@@ -29,12 +29,12 @@ import java.util.Map;
 
 public class LoginAcitivty extends AppCompatActivity {
 
-    public static String ngrokID = "https://2ff22e117c35.ngrok.io";
+    public static String ngrokID = "https://4c2bf165a7c4.ngrok.io";
     private static String URL_LOGIN = ngrokID + "/RunningApp/login.php";
-    private static User user;
+    public static User user;
 
 
-    Button toreg, tomaps, login;
+    Button toreg, login;
     EditText memail, pass;
 
 //    TODO: larry
@@ -44,18 +44,11 @@ public class LoginAcitivty extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_acitivty);
 
-        tomaps = findViewById(R.id.tomaps);
         toreg = findViewById(R.id.toreg);
         login = findViewById(R.id.login);
         memail = findViewById(R.id.email);
         pass = findViewById(R.id.password);
 
-        tomaps.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), MapsActivity.class));
-            }
-        });
 
         toreg.setOnClickListener(new View.OnClickListener() {
             @Override
