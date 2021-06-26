@@ -103,8 +103,11 @@ public class LoginAcitivty extends AppCompatActivity {
 //                                        String age = object.getString("age").trim();
                                     int ID = object.getInt("id");
                                     int distance = object.getInt("distance");
+                                    int credits = object.getInt("credits");
+                                    double lat = object.getDouble("lat");
+                                    double lng = object.getDouble("lng");
 
-                                    user = new User(fname, lname, email, ID, distance);
+                                    user = new User(fname, lname, email, ID, distance, lat, lng, credits);
 
                                     Toast.makeText(LoginAcitivty.this, "Login Successful", Toast.LENGTH_SHORT).show();
 

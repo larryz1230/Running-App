@@ -27,6 +27,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentActivity;
 
 
+import com.example.runningapp.Login.LoginAcitivty;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -373,12 +374,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 //        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(LAT_LNG_BOUNDS, 0));
 
-        CameraUpdate point = CameraUpdateFactory.newLatLng(new LatLng(37.554900, -122.051040));
+        LatLng latLng = new LatLng(LoginAcitivty.user.getLat(), LoginAcitivty.user.getLng());
+
+        CameraUpdate point = CameraUpdateFactory.newLatLng(latLng);
                 mMap.moveCamera(point);
 
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(37.554900, -122.051040 ), 12.0f));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12.0f));
 
-        mMap.addMarker(new MarkerOptions().position(onemirad.get(0).getLatLng()).title("Starting Location"));
+        mMap.addMarker(new MarkerOptions().position(latLng).title("Starting Location"));
 
         init();
 

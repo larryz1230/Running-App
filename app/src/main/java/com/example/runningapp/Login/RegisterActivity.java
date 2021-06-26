@@ -79,9 +79,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-
-
-
         mRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
