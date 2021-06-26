@@ -48,7 +48,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     //    TODO: larry
 
-    Button mLogin, mRegister, button;
+    Button mLogin, mRegister;
     EditText fname, lname, email, password;
     private static String URL_REGIST = LoginAcitivty.ngrokID+"/RunningApp/register.php";
     private AutoCompleteTextView mSearchText;
@@ -79,12 +79,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                init();
-            }
-        });
+
 
 
         mRegister.setOnClickListener(new View.OnClickListener() {
