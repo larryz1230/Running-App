@@ -81,6 +81,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private static final LatLngBounds LAT_LNG_BOUNDS = new LatLngBounds(
             new LatLng(-40, -58), new LatLng(71, 80));
 
+
+
     // Current Location Stuff
     SupportMapFragment supportMapFragment;
     FusedLocationProviderClient client;
@@ -107,6 +109,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public ArrayList<POIS> threemirad = new ArrayList<>();
     public ArrayList<POIS> fivemirad = new ArrayList<>();
 
+    public ArrayList<ArrayList<POIS>> list = new ArrayList<>();
 
 
     private boolean hasStarted = false;
@@ -148,25 +151,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         supportMapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
 
-        client = LocationServices.getFusedLocationProviderClient(this);
-
-        // Check Permission
-        if (ActivityCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            //When permission granted
-            getCurrentLocation();
-            client.getLastLocation()
-                    .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                        @Override
-                        public void onSuccess(Location location) {
-                            latLngg = new LatLng(location.getLatitude(), location.getLongitude());
-                        }
-                    });
-        } else {
-            //When permission denied
-            //Request permission
-            ActivityCompat.requestPermissions(MapsActivity.this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
-        }
 
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -360,8 +344,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
 //        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(LAT_LNG_BOUNDS, 0));
+        LatLng latLng;
+        if (LoginAcitivty.user!=null){
+             latLng= new LatLng(LoginAcitivty.user.getLat(), LoginAcitivty.user.getLng());
+        } else {
+             latLng = new LatLng(37.55429832885183, -122.05426336730469);
+        }
 
-        LatLng latLng = new LatLng(LoginAcitivty.user.getLat(), LoginAcitivty.user.getLng());
+
 
         CameraUpdate point = CameraUpdateFactory.newLatLng(latLng);
                 mMap.moveCamera(point);
