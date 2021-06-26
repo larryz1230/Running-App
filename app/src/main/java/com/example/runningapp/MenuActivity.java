@@ -12,7 +12,7 @@ import com.example.runningapp.Login.LoginAcitivty;
 
 public class MenuActivity extends AppCompatActivity {
 
-    private Button toleader, tostore, toprofile, mlogout;
+    private Button tostore, toprofile, mlogout;
     private TextView textView;
 
     @Override
@@ -20,18 +20,13 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        toleader = findViewById(R.id.toleader);
+
         toprofile = findViewById(R.id.toprofile);
         tostore = findViewById(R.id.tostore);
         mlogout = findViewById(R.id.logout);
         textView = findViewById(R.id.welcome);
 
-        toleader.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), LeaderboardActivity.class));
-            }
-        });
+
 
         tostore.setOnClickListener(new View.OnClickListener() {
             @Override

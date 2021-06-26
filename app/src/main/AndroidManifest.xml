@@ -27,7 +27,6 @@
 
         <activity android:name=".ProfileActivity" />
         <activity android:name=".StoreActivity" />
-        <activity android:name=".LeaderboardActivity" />
         <activity android:name=".Login.RegisterActivity" />
         <activity android:name=".Login.LoginAcitivty">
             <intent-filter>
