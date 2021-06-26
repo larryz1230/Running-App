@@ -7,6 +7,16 @@
     tools:context=".StoreActivity">
 
 
+  <ImageView
+      android:id="@+id/bkgd"
+      android:layout_width="627dp"
+      android:layout_height="859dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:srcCompat="@drawable/path_1" />
+
   <TextView
       android:id="@+id/storeTitle"
       android:layout_width="115dp"
@@ -33,11 +43,12 @@
 
 
   <ScrollView
+      android:id="@+id/scrollView2"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
+      android:layout_marginTop="100dp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/storeTitle"
-      android:layout_marginTop="100dp"
       tools:layout_editor_absoluteX="194dp">
 
     <LinearLayout
@@ -61,7 +72,7 @@
               android:id="@+id/imageView1"
               android:layout_width="164dp"
               android:layout_height="176dp"
-              app:srcCompat="@drawable/adid" />
+              app:srcCompat="@drawable/da4ad53ab54766329770d004800d7124_medium" />
 
           <TextView
               android:id="@+id/textView1"
@@ -81,7 +92,7 @@
               android:id="@+id/imageView2"
               android:layout_width="164dp"
               android:layout_height="176dp"
-              app:srcCompat="@drawable/adid" />
+              app:srcCompat="@drawable/fitbit" />
 
           <TextView
               android:id="@+id/textView2"
@@ -109,7 +120,7 @@
               android:id="@+id/imageView3"
               android:layout_width="164dp"
               android:layout_height="176dp"
-              app:srcCompat="@drawable/adid" />
+              app:srcCompat="@drawable/hydro" />
 
           <TextView
               android:id="@+id/textView3"
@@ -129,7 +140,7 @@
               android:id="@+id/imageView4"
               android:layout_width="164dp"
               android:layout_height="176dp"
-              app:srcCompat="@drawable/adid" />
+              app:srcCompat="@drawable/speedo123" />
 
           <TextView
               android:id="@+id/textView4"
@@ -157,7 +168,7 @@
               android:id="@+id/imageView5"
               android:layout_width="164dp"
               android:layout_height="176dp"
-              app:srcCompat="@drawable/adid" />
+              app:srcCompat="@drawable/peepepe" />
 
           <TextView
               android:id="@+id/textView5"
@@ -177,7 +188,7 @@
               android:id="@+id/imageView6"
               android:layout_width="164dp"
               android:layout_height="176dp"
-              app:srcCompat="@drawable/adid" />
+              app:srcCompat="@drawable/coming_soon" />
 
           <TextView
               android:id="@+id/textView6"
@@ -189,10 +200,10 @@
 
       </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
 
 
         <LinearLayout
@@ -201,11 +212,11 @@
             android:layout_weight="50"
             android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="164dp"
-            android:layout_height="176dp"
-            app:srcCompat="@drawable/adid" />
+          <ImageView
+              android:id="@+id/imageView7"
+              android:layout_width="164dp"
+              android:layout_height="176dp"
+              app:srcCompat="@drawable/coming_soon" />
 
           <TextView
               android:id="@+id/textView7"
@@ -215,27 +226,27 @@
 
         </LinearLayout>
 
-      <LinearLayout
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_weight="50"
-          android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/imageView8"
-            android:layout_width="164dp"
-            android:layout_height="176dp"
-            app:srcCompat="@drawable/adid" />
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_weight="50"
+            android:orientation="vertical">
+
+          <ImageView
+              android:id="@+id/imageView8"
+              android:layout_width="164dp"
+              android:layout_height="176dp"
+              app:srcCompat="@drawable/coming_soon" />
+
+          <TextView
+              android:id="@+id/textView8"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="TextView" />
+
+        </LinearLayout>
 
       </LinearLayout>
-
-    </LinearLayout>
 
     </LinearLayout>
 
