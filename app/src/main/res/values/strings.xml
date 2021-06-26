@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">RunningApp</string>
+    <string name="maps">MAPS</string>
+    <string name="reg">REG</string>
+    <string name="login">LOGIN</string>
+    <string name="register_activity">Register Activity</string>
+    <string name="login_activity">Login Activity</string>
+</resources>
