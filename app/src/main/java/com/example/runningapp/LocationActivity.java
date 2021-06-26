@@ -34,7 +34,7 @@ public class LocationActivity extends AppCompatActivity {
     private FusedLocationProviderClient client;
     private GoogleApiClient mGoogleApiClient;
 
-    TextView location;
+    TextView location, distance, desc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +42,15 @@ public class LocationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_location);
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         location = findViewById(R.id.location);
-
+        distance = findViewById(R.id.distance);
+        desc = findViewById(R.id.desc);
         Intent intent = getIntent();
         String locationname = intent.getStringExtra("place");
+        Double distancee = intent.getDoubleExtra("distance", 0.00);
+        String descr = intent.getStringExtra("description");
+
+        distance.setText(distancee.toString());
+        desc.setText(descr);
         location.setText(locationname);
 
         mGoogleApiClient = new GoogleApiClient

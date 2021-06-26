@@ -135,10 +135,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-        onemirad.add(new POIS("Newark Community Center Park", 37.54954479327098, -122.04083206730614));
-        onemirad.add(new POIS("John F Kennedy Elementary School", 37.552601866282345, -122.04221115390615));
-        onemirad.add(new POIS("Fremont Fire Station", 37.566681495084794, -122.05337611925441));
-        onemirad.add(new POIS("Lakeshore Park", 37.553702292645035, -122.03290447295569));
+        onemirad.add(new POIS("Karl Nordvik Park", "description", 37.5555, -122.0605, 0.8));
+        onemirad.add(new POIS("Newark Community Center Park", "description", 37.54954479327098, -122.04083206730614, 0.9));
+        onemirad.add(new POIS("John F Kennedy Elementary School", "description", 37.552601866282345, -122.04221115390615, 1.4));
+        onemirad.add(new POIS("Fremont Fire Station", "description", 37.566681495084794, -122.05337611925441, 1.9));
+        onemirad.add(new POIS("Lakeshore Park", "description", 37.553702292645035, -122.03290447295569, 1.9));
 
 
 
@@ -394,6 +395,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         intent.putExtra("lat", i.getLat());
                         intent.putExtra("lng", i.getLng());
                         intent.putExtra("place", i.getLocationname());
+                        intent.putExtra("description", i.getDescription());
+                        intent.putExtra("distance", i.getDistance());
                         startActivity(intent);
                     }
                 }
