@@ -9,6 +9,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -396,11 +397,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     marker.remove();
                     autoclick = false;
                 }
-//                for(Institution i : institutions.getLocations()){
-//                    if(i.getPos().equals(MapsActivity.getClickPos())){
-//                        inst = i;
-//                    }
-//                }
+                for(POIS i : onemirad){
+                    if(i.getLatLng().equals(MapsActivity.getClickPos())){
+                        System.out.println(i.getLocationname());
+                        Intent intent = new Intent(getApplicationContext(), LocationActivity.class);
+                        intent.putExtra("lat", i.getLat());
+                        intent.putExtra("lng", i.getLng());
+                        intent.putExtra("place", i.getLocationname());
+                        startActivity(intent);
+                    }
+                }
 
 //                details = findViewById(R.id.details);
 //                details.setOnClickListener(new View.OnClickListener() {
