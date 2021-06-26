@@ -70,7 +70,6 @@ public class RegisterActivity extends AppCompatActivity {
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         mRegister = findViewById(R.id.register);
-        button = findViewById(R.id.init);
 
 
         mLogin.setOnClickListener(new View.OnClickListener() {
