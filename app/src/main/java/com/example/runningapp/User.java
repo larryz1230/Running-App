@@ -47,4 +47,13 @@ public class User {
     public String getLname() {
         return lname;
     }
+
+    public void setCredits(int credits) {
+        this.credits = credits;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
+    }
+
 }
