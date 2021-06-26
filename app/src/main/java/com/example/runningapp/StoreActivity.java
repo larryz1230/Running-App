@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.runningapp.Login.LoginAcitivty;
+
 public class StoreActivity extends AppCompatActivity {
 
     //    Todo: Austin + Frank: show num credits the user has, and have options to buy items (can hard code})
@@ -15,11 +17,13 @@ public class StoreActivity extends AppCompatActivity {
     TextView storeTitle, creditText;
     Button bItem1;
     ImageView sItem1; //idk if we need imageview
-    int credits = 100;
+    int credits;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store);
+
+        credits = LoginAcitivty.user.getCredits();
 
         storeTitle = findViewById(R.id.storeTitle);
         creditText = findViewById(R.id.credits);
@@ -32,6 +36,7 @@ public class StoreActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 credits -= 1; // placeholder values rn
+                LoginAcitivty.user.setCredits(credits);
                 creditText.setText("Credits: " + credits);
             }
         });
