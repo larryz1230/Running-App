@@ -32,14 +32,14 @@ public class StoreActivity extends AppCompatActivity {
 //        sItem1 = findViewById(R.id.sItem1);
 
         creditText.setText("Credits: " + credits);
-        bItem1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                credits -= 1; // placeholder values rn
-                LoginAcitivty.user.setCredits(credits);
-                creditText.setText("Credits: " + credits);
-            }
-        });
+//        bItem1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                credits -= 1; // placeholder values rn
+//                LoginAcitivty.user.setCredits(credits);
+//                creditText.setText("Credits: " + credits);
+//            }
+//        });
 
 
     }
