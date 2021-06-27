@@ -61,8 +61,9 @@ import java.util.Map;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.OnConnectionFailedListener {
     private Button tomenu;
-    private GoogleMap mMap;
+//    private GoogleMap mMap;
     private Marker selected;
+    public static HashMap<String,Marker> hashMapMarker = new HashMap<>();
     private boolean clicked = false;
     private Bitmap institution_icon;
     public static String desc1;
@@ -71,6 +72,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     //public static Institutions institute;
     public static boolean addedanything = false;
     private static final String TAG = "MapActivity";
+    public static List<Marker> AllMarkers = new ArrayList<Marker>();
     private boolean autoclick = false;
     public static boolean notNull = false;
     public static List<Marker> toDelete = new ArrayList<>();
@@ -78,6 +80,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
     private static final float DEFAULT_ZOOM = 15f;
+    public static GoogleMap mMap;
     private static final LatLngBounds LAT_LNG_BOUNDS = new LatLngBounds(
             new LatLng(-40, -58), new LatLng(71, 80));
 
@@ -105,11 +108,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     DrawerLayout d1;
 
 
-    public ArrayList<POIS> onemirad = new ArrayList<>();
-    public ArrayList<POIS> threemirad = new ArrayList<>();
-    public ArrayList<POIS> fivemirad = new ArrayList<>();
+    public static ArrayList<POIS> onemirad = new ArrayList<>();
 
-    public ArrayList<ArrayList<POIS>> list = new ArrayList<>();
 
 
     private boolean hasStarted = false;
@@ -126,10 +126,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_maps);
 //        swiper_no_swiping = findViewById(R.id.swipethismuthafucka);
 
-        list.add(onemirad);
-        list.add(threemirad);
-        list.add(fivemirad);
-
         tomenu = findViewById(R.id.menu);
 
         tomenu.setOnClickListener(new View.OnClickListener() {
@@ -140,10 +136,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
         onemirad.add(new POIS("Karl Nordvik Park", "a park", 37.5555, -122.0605, 0.8));
-        onemirad.add(new POIS("Newark Community Center Park", "description", 37.54954479327098, -122.04083206730614, 0.9));
+        onemirad.add(new POIS("Patterson Elementary School", "description", 37.561956654969386, -122.03129274411957, 2.0));
         onemirad.add(new POIS("John F Kennedy Elementary School", "description", 37.552601866282345, -122.04221115390615, 1.4));
-        onemirad.add(new POIS("Fremont Fire Station", "description", 37.566681495084794, -122.05337611925441, 1.9));
-        onemirad.add(new POIS("Lakeshore Park", "description", 37.553702292645035, -122.03290447295569, 1.9));
+        onemirad.add(new POIS("James Logan High School", "description", 37.59012841393866, -122.026838044119, 3.7));
+        onemirad.add(new POIS("Central Park Dog Park", "description", 37.55249342436547, -121.96680645946422, 6.8));
+
 
 
 
@@ -367,17 +364,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         init();
 
+
         for (POIS poi : onemirad){
-            mMap.addMarker(new MarkerOptions().position(poi.getLatLng()).title(poi.getLocationname() + " 5 points"));
+            Marker marker =  mMap.addMarker(new MarkerOptions().position(poi.getLatLng()).title(poi.getLocationname()));
+            hashMapMarker.put(poi.getLocationname(),marker);
+            AllMarkers.add(marker);
         }
-//        mMap.addMarker(new MarkerOptions().position(onemirad.get(0).getLatLng()).title(onemirad.get(0).getLocationname() + " 5 points"));
-//        mMap.addMarker(new MarkerOptions().position(onemirad.get(1).getLatLng()).title(onemirad.get(1).getLocationname() + " 5 points"));
-//        mMap.addMarker(new MarkerOptions().position(threemirad.get(0).getLatLng()).title(threemirad.get(0).getLocationname() + "20 points"));
-//        mMap.addMarker(new MarkerOptions().position(fivemirad.get(0).getLatLng()).title(fivemirad.get(0).getLocationname() + " 40 points"));
-//
-
-
-
 
 
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
@@ -385,14 +377,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             @Override
             public boolean onMarkerClick(final  Marker marker) {
-                Toast.makeText(MapsActivity.this, "Selected a marker", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MapsActivity.this, "Selected", Toast.LENGTH_SHORT).show();
                 clickPos = marker.getPosition();
                 clicked = true;
                 if(autoclick){
                     marker.remove();
                     autoclick = false;
                 }
-                for(POIS i : onemirad){
+                for(int j =0; j<onemirad.size(); j++){
+                    POIS i = onemirad.get(j);
                     if(i.getLatLng().equals(MapsActivity.getClickPos())){
                         System.out.println(i.getLocationname());
                         Intent intent = new Intent(getApplicationContext(), LocationActivity.class);
@@ -401,6 +394,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         intent.putExtra("place", i.getLocationname());
                         intent.putExtra("description", i.getDescription());
                         intent.putExtra("distance", i.getDistance());
+                        intent.putExtra("index", j);
                         startActivity(intent);
                     }
                 }
@@ -437,123 +431,34 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 return clicked;
             }
         });
-
-
-//        // moves camera to coordinates
-
-//// animates camera to coordinates
-//        mMap.animateCamera(point);
-
-//        System.out.println(getClickPos().latitude);
-
-
-//        for(LatLng l : locCor){
-//            LatLng institutePos = l;
-//            mMap.addMarker(new MarkerOptions().position(institutePos).title("Institution").icon(BitmapDescriptorFactory.fromBitmap(institution_icon)));
-//        }
-//        System.out.println(locCor.size());
-////        for(Institution i : soupKitchen.getLocations()){
-////            LatLng institutePos = i.getPos();
-////            mMap.addMarker(new MarkerOptions().position(institutePos).title("Soup Kitchen").icon(BitmapDescriptorFactory.fromBitmap(institution_icon)));
-////        }
-//        removelocation = findViewById(R.id.remove);
-//        if(!(citizen.getEmail().equals("notcitizen"))){
-//            removelocation.setVisibility(View.GONE);
-//        } else {
-//            removelocation.setVisibility(View.VISIBLE);
-//        }
-//
-//
-//        // Add a marker in Sydney and move the camera
-////        LatLng sydney = new LatLng(-34, 151);
-////        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-////        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-//        if(addedanything) {
-//            for (Institution i : institutions.getLocations()) {
-//                LatLng institutePos = i.getPos();
-//                Marker m = mMap.addMarker(new MarkerOptions().position(institutePos).title("Your Institute").icon(BitmapDescriptorFactory.fromBitmap(institution_icon)));
-//                //get coordinates from data
-//            }
-//        }
-
-//        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-//            @Override
-//            public void onMapClick(LatLng latLng) {
-//
-//                if(selected != null){
-//                    selected.remove();
-//                }
-//
-//                clickPos = latLng;
-//                selectedAnything = true;
-//
-//
-//                selected = mMap.addMarker(new MarkerOptions().position(latLng).title(""));
-//                clicked = true;
-//
-//            }
-//
-//        });
-
-//        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-//            private boolean doit = false;
-//
-//            @Override
-//            public boolean onMarkerClick(final  Marker marker) {
-//                Institution inst = null;
-//                Toast.makeText(MapsActivity.this, "Selected a marker", Toast.LENGTH_SHORT).show();
-//                clickPos = marker.getPosition();
-//                clicked = true;
-//                if(autoclick){
-//                    marker.remove();
-//                    autoclick = false;
-//                }
-//                for(Institution i : institutions.getLocations()){
-//                    if(i.getPos().equals(MapsActivity.getClickPos())){
-//                        inst = i;
-//                    }
-//                }
-//
-//                details = findViewById(R.id.details);
-//                details.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        //marker.getPostition()
-//                        // if(description1 == null || type1 == null){
-//                        //  Toast.makeText(MapsActivity.this, "Details not available", Toast.LENGTH_SHORT).show();
-//                        //   } else {
-//                        startActivity(new Intent(MapsActivity.this, DetailsActivity.class));
-//                        finish();
-//                        return;
-//                        //}
-//                    }
-//
-//                });
-//
-//
-//                removelocation.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        marker.remove();
-//                        for (Institution i : institutions.getLocations()) {
-//                            if(marker.getPosition().equals(i.getPos())){
-//                                Toast.makeText(MapsActivity.this, "Removed a location", Toast.LENGTH_SHORT).show();
-//                                institutions.getLocations().remove(i);
-//                            }
-//                        }
-//                    }
-//                });
-//                return clicked;
-//            }
-//        });
-
-
     }
+
+
     public static LatLng getClickPos() {
         return clickPos;
     }
 
+    public static void removeMark(String name){
+        Marker marker = hashMapMarker.get(name);
+        System.out.println("title "+ marker.getTitle());
+        if (marker!=null){
+            marker.remove();
+            hashMapMarker.remove(name);
+            System.out.println("delted");
+        }
 
+//        mMap.clear();
+
+    }
+
+
+    public static void removeAllMarkers() {
+        for (Marker mLocationMarker: AllMarkers) {
+            mLocationMarker.remove();
+        }
+        AllMarkers.clear();
+
+    }
 
 
 }

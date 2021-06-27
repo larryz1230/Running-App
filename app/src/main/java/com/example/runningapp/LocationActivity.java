@@ -24,6 +24,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.places.Places;
+import com.google.android.gms.maps.model.Marker;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,6 +44,8 @@ public class LocationActivity extends AppCompatActivity {
     Integer numcreds;
     String category;
     Double distancee;
+    String locationname;
+    int index;
     Button check, submit;
     private static String URL_ADD = LoginAcitivty.ngrokID+"/RunningApp/addplace.php";
 
@@ -61,9 +64,10 @@ public class LocationActivity extends AppCompatActivity {
         categ = findViewById(R.id.categ);
         creds = findViewById(R.id.creditss);
         Intent intent = getIntent();
-        String locationname = intent.getStringExtra("place");
+        locationname = intent.getStringExtra("place");
          distancee = intent.getDoubleExtra("distance", 0.00);
         String descr = intent.getStringExtra("description");
+        index = intent.getIntExtra("index", 0);
 
         distance.setText(distancee.toString() + " miles");
         desc.setText(descr);
@@ -104,6 +108,7 @@ public class LocationActivity extends AppCompatActivity {
             public void onClick(View view) {
 //                TODO: go to database;
                 add();
+
             }
         });
     }
@@ -154,6 +159,9 @@ public class LocationActivity extends AppCompatActivity {
                             if (success.equals("1")){
                                 Toast.makeText(LocationActivity.this, "Success!", Toast.LENGTH_SHORT).show();
 //                                TODO: delete marker from map.
+//                                MapsActivity.removeMark(locationname);
+//                                System.out.println("index "+index);
+//                                MapsActivity.removeAllMarkers();
                                 startActivity(new Intent(getApplicationContext(), MapsActivity.class));
 
                             }
