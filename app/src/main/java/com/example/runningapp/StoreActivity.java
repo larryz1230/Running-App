@@ -30,7 +30,7 @@ public class StoreActivity extends AppCompatActivity {
     //    Todo: Austin + Frank: show num credits the user has, and have options to buy items (can hard code})
 
     TextView storeTitle, creditText;
-    Button bItem1;
+    Button b1, b2, b3, b4, b5, b6, b7, b8;
     ImageView sItem1; //idk if we need imageview
     int creditsss;
 
@@ -44,12 +44,21 @@ public class StoreActivity extends AppCompatActivity {
         creditText = findViewById(R.id.credits);
 
 
-
             creditText.setText("Credits: " + LoginAcitivty.user.getCredits());
 
 
 //        bItem1 = findViewById(R.id.bItem1);
 //        sItem1 = findViewById(R.id.sItem1);
+
+        b1 = findViewById(R.id.sButton1);
+        b2 = findViewById(R.id.sButton2);
+        b3 = findViewById(R.id.sButton3);
+        b4 = findViewById(R.id.sButton4);
+        b5 = findViewById(R.id.sButton5);
+        b6 = findViewById(R.id.sButton6);
+        b7 = findViewById(R.id.sButton7);
+        b8 = findViewById(R.id.sButton8);
+
 
 
 //        bItem1.setOnClickListener(new View.OnClickListener() {
