@@ -39,8 +39,8 @@ public class LocationActivity extends AppCompatActivity {
     private FusedLocationProviderClient client;
     private GoogleApiClient mGoogleApiClient;
 
-    TextView location, distance, desc, creds, categ;
-    ImageView imageview;
+    TextView location, distance, desc, creds;
+    ImageView imageview,button;
     Integer numcreds;
     String category;
     Double distancee;
@@ -60,8 +60,8 @@ public class LocationActivity extends AppCompatActivity {
         imageview = findViewById(R.id.imageView);
         check = findViewById(R.id.button);
         submit = findViewById(R.id.submit);
+        button = findViewById(R.id.submitBkgd);
 
-        categ = findViewById(R.id.categ);
         creds = findViewById(R.id.creditss);
         Intent intent = getIntent();
         locationname = intent.getStringExtra("place");
@@ -84,7 +84,6 @@ public class LocationActivity extends AppCompatActivity {
             category = "Long";
         }
         creds.setText(numcreds.toString() + " Credits");
-        categ.setText("Category: " + category);
 
         mGoogleApiClient = new GoogleApiClient
                 .Builder(this)
@@ -125,6 +124,8 @@ public class LocationActivity extends AppCompatActivity {
 
                     imageview.setVisibility(View.VISIBLE);
                     submit.setVisibility(View.VISIBLE);
+                    button.setVisibility(View.VISIBLE);
+
                 }
 
                 break;
