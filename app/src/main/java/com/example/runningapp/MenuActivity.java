@@ -29,7 +29,7 @@ import java.util.Map;
 public class MenuActivity extends AppCompatActivity {
 
     private Button tostore, toprofile, mlogout;
-    private TextView textView;
+    private TextView name, email, distance, credits;
     private String URL_CREDITS = LoginAcitivty.ngrokID + "/RunningApp/getCreds.php";
 
     @Override
@@ -41,8 +41,11 @@ public class MenuActivity extends AppCompatActivity {
         toprofile = findViewById(R.id.toprofile);
         tostore = findViewById(R.id.tostore);
         mlogout = findViewById(R.id.logout);
-        textView = findViewById(R.id.welcome);
 
+        name = findViewById(R.id.nameMenu);
+        email = findViewById(R.id.emailMenu);
+        distance = findViewById(R.id.distanceMenu);
+        credits = findViewById(R.id.creditsMenu);
 
 
         tostore.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +69,6 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        textView.setText("Welcome "+LoginAcitivty.user.getFname());
 
         getCredits(LoginAcitivty.user.getId());
 
