@@ -95,7 +95,7 @@ public class MenuActivity extends AppCompatActivity {
 
                                     System.out.println(LoginAcitivty.user.getDistance());
                                     LoginAcitivty.user.setCredits(credits);
-                                    LoginAcitivty.user.setDistance(distance);
+                                    LoginAcitivty.user.setDistance(round(distance,2));
                                     System.out.println(LoginAcitivty.user.getDistance());
 
 //                                        loading.setVisibility(View.GONE);
@@ -135,5 +135,14 @@ public class MenuActivity extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
+    }
+
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
     }
 }

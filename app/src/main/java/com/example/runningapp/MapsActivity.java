@@ -126,6 +126,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_maps);
 //        swiper_no_swiping = findViewById(R.id.swipethismuthafucka);
 
+        list.add(onemirad);
+        list.add(threemirad);
+        list.add(fivemirad);
+
         tomenu = findViewById(R.id.menu);
 
         tomenu.setOnClickListener(new View.OnClickListener() {
