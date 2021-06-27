@@ -50,7 +50,7 @@ public class MenuActivity extends AppCompatActivity {
         User u = LoginAcitivty.user;
         name.setText(u.getFname() + " " + u.getLname());
         email.setText(u.getEmail());
-        distance.setText("Distance: " + round(u.getDistance(), 2));
+        distance.setText("Distance: " + round(u.getDistance(), 2) + " mi");
         credits.setText("Credits: "+u.getCredits());
 
 
