@@ -8,6 +8,17 @@
     tools:context=".MenuActivity">
 
 
+    <ImageView
+        android:id="@+id/imageView15"
+        android:layout_width="450dp"
+        android:layout_height="250dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.968"
+        app:srcCompat="@drawable/rect4" />
 
     <ImageView
         android:id="@+id/imageView11"
@@ -43,6 +54,17 @@
         app:layout_constraintVertical_bias="0.72"
         app:srcCompat="@drawable/rect5" />
 
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="237dp"
+        android:layout_height="83dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.848"
+        app:srcCompat="@drawable/rect6" />
+
     <Button
         android:id="@+id/logout"
         android:layout_width="150dp"
@@ -57,17 +79,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.955" />
-
-    <ImageView
-        android:id="@+id/imageView17"
-        android:layout_width="237dp"
-        android:layout_height="83dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.848"
-        app:srcCompat="@drawable/rect5" />
 
     <Button
         android:id="@+id/toprofile"
@@ -98,18 +109,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.71" />
-
-    <ImageView
-        android:id="@+id/imageView15"
-        android:layout_width="450dp"
-        android:layout_height="250dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.968"
-        app:srcCompat="@drawable/rect4" />
 
     <ImageView
         android:id="@+id/imageView19"
