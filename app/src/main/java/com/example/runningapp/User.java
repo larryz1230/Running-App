@@ -1,9 +1,9 @@
 package com.example.runningapp;
 
 public class User {
-    private int id, distance, credits;
+    private int id, credits;
     private String fname, lname, email;
-    private double lat, lng;
+    private double lat, lng, distance;
 
     public User (String fname, String lname, String email, int id, int distance, double lat, double lng, int credits){
         this.fname = fname;
@@ -36,7 +36,7 @@ public class User {
         return email;
     }
 
-    public int getDistance() {
+    public double getDistance() {
         return distance;
     }
 
@@ -52,7 +52,7 @@ public class User {
         this.credits = credits;
     }
 
-    public void setDistance(int distance) {
+    public void setDistance(double distance) {
         this.distance = distance;
     }
 
