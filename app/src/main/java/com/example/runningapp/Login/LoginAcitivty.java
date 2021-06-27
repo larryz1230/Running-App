@@ -102,7 +102,7 @@ public class LoginAcitivty extends AppCompatActivity {
                                     String email = object.getString("email").trim();
 //                                        String age = object.getString("age").trim();
                                     int ID = object.getInt("id");
-                                    int distance = object.getInt("distance");
+                                    double distance = object.getDouble("distance");
                                     int credits = object.getInt("credits");
                                     double lat = object.getDouble("lat");
                                     double lng = object.getDouble("lng");

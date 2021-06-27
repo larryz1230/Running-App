@@ -5,7 +5,7 @@ public class User {
     private String fname, lname, email;
     private double lat, lng, distance;
 
-    public User (String fname, String lname, String email, int id, int distance, double lat, double lng, int credits){
+    public User (String fname, String lname, String email, int id, double distance, double lat, double lng, int credits){
         this.fname = fname;
         this.lname = lname;
         this.email = email;
