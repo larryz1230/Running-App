@@ -28,7 +28,7 @@ import java.util.Map;
 
 public class MenuActivity extends AppCompatActivity {
 
-    private Button tostore, toprofile, mlogout;
+    private Button tostore, tomaps, mlogout;
     private TextView name, email, distance, credits;
     private String URL_CREDITS = LoginAcitivty.ngrokID + "/RunningApp/getCreds.php";
 
@@ -38,7 +38,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
 
-        toprofile = findViewById(R.id.toprofile);
+        tomaps = findViewById(R.id.toprofile);
         tostore = findViewById(R.id.tostore);
         mlogout = findViewById(R.id.logout);
 
@@ -46,6 +46,12 @@ public class MenuActivity extends AppCompatActivity {
         email = findViewById(R.id.emailMenu);
         distance = findViewById(R.id.distanceMenu);
         credits = findViewById(R.id.creditsMenu);
+
+        User u = LoginAcitivty.user;
+        name.setText(u.getFname() + " " + u.getLname());
+        email.setText(u.getEmail());
+        distance.setText("Distance: " + round(u.getDistance(), 2));
+        credits.setText("Credits: "+u.getCredits());
 
 
         tostore.setOnClickListener(new View.OnClickListener() {
@@ -55,10 +61,10 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        toprofile.setOnClickListener(new View.OnClickListener() {
+        tomaps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                startActivity(new Intent(getApplicationContext(), MapsActivity.class));
             }
         });
 
