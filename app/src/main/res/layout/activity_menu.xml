@@ -10,8 +10,9 @@
 
     <ImageView
         android:id="@+id/imageView15"
-        android:layout_width="450dp"
-        android:layout_height="250dp"
+        android:layout_width="276dp"
+        android:layout_height="241dp"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
@@ -34,13 +35,14 @@
 
     <ImageView
         android:id="@+id/imageView12"
-        android:layout_width="209dp"
-        android:layout_height="181dp"
+        android:layout_width="146dp"
+        android:layout_height="124dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.029"
+        app:layout_constraintVertical_bias="0.084"
         app:srcCompat="@drawable/profile_picture" />
 
     <ImageView
@@ -85,7 +87,7 @@
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:background="#00000000"
-        android:text="Profile"
+        android:text="Maps"
         android:textColor="#807272"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -132,7 +134,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.31" />
+        app:layout_constraintVertical_bias="0.274" />
 
     <TextView
         android:id="@+id/emailMenu"
@@ -146,7 +148,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.364" />
+        app:layout_constraintVertical_bias="0.328" />
 
     <ImageView
         android:id="@+id/imageView21"
@@ -162,17 +164,17 @@
 
     <TextView
         android:id="@+id/creditsMenu"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
+
         android:text="Credits: "
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.272"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.543" />
+        app:layout_constraintVertical_bias="0.546" />
 
     <ImageView
         android:id="@+id/imageView20"
@@ -180,10 +182,10 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.451"
+        app:layout_constraintVertical_bias="0.422"
         app:srcCompat="@drawable/rect2" />
 
     <TextView
@@ -195,9 +197,9 @@
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.324"
+        app:layout_constraintHorizontal_bias="0.365"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.456" />
+        app:layout_constraintVertical_bias="0.43" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
